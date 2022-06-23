@@ -60,7 +60,7 @@ h1{
 
 .distribution{
     display: flex;
-    margin-left: 1rem;
+    margin-left: 16px;
 }
 
 .date{
@@ -100,25 +100,31 @@ h1{
     overflow-y: auto;
 }
 
-@media screen and (max-width: 185px) {
+@media screen and (max-width: 184px) {
+    .switches{
+        height: calc(100% - 145px);
+    }
+}
+
+@media screen and (min-width: 185px) and (max-width: 208px) {
     .switches{
         height: calc(100% - 126px);
     }
 }
 
-@media screen and (min-width: 186px) and (max-width: 205px) {
+@media screen and (min-width: 209px) and (max-width: 212px) {
     .switches{
         height: calc(100% - 107px);
     }
 }
 
-@media screen and (min-width: 206px) and (max-width: 303px) {
+@media screen and (min-width: 213px) and (max-width: 318px) {
     .switches{
         height: calc(100% - 89px);
     }
 }
 
-@media screen and (min-width: 304px) and (max-width: 516px) {
+@media screen and (min-width: 319px) and (max-width: 621px) {
     .switches{
         height: calc(100% - 69px);
     }

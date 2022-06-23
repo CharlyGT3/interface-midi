@@ -3,17 +3,16 @@ import {options} from ".//addOptions.js";
 var switches = document.querySelector(".switches");
 var Add = document.querySelector(".Add");
 var Remove = document.querySelector(".Remove");
+var Save = document.querySelector(".Save");
 
-function addLocalStorage () {
-    let saveNumSwitches = switches.childNodes.length;
-        let saveSwitches = switches.childNodes[saveNumSwitches - 1].outerHTML;
-        localStorage.setItem("switches" + (saveNumSwitches - 1), saveSwitches);
+function saveValueSelect() {
+    let footSwitchContent = document.querySelectorAll(".footSwitchContent");
+    for (let i = 0; i < footSwitchContent.length; i++) {
+        let selectObject = footSwitchContent[i].children[3].selectedOptions[0];
+        let selectValue = selectObject.value;
+        selectObject.setAttribute("selected", selectValue);
+    }
 }
-
-function removeLocalStorage () {
-    let saveNumSwitches = switches.childNodes.length;
-        localStorage.removeItem("switches" + saveNumSwitches);
-        }
 
 function insertLocalStorage () {
     let localStorageLength = localStorage.length;
@@ -27,17 +26,26 @@ insertLocalStorage();
 
 Add.addEventListener("click", function() {
     switches.insertAdjacentHTML("beforeend", options);
-    addLocalStorage();
 }
 );
+
 Remove.addEventListener("click", function() {
     let saveNumSwitches = switches.childNodes.length;
     if (saveNumSwitches > 0) {
     switches.removeChild(switches.lastChild);
-    removeLocalStorage();
     }
 }
 );
+
+Save.addEventListener("click", function() {
+    localStorage.clear();
+    saveValueSelect();
+    let saveNumSwitches = switches.childNodes.length;
+    for (var i = 1; i < saveNumSwitches; i++) {
+        let saveSwitches = switches.childNodes[i].outerHTML;
+        localStorage.setItem("switches" + (i), saveSwitches);
+    }
+});
 
 if (navigator.requestMIDIAccess) {
     navigator.requestMIDIAccess({sysex: true}).then(onMIDISuccess, onMIDIFailure);
@@ -65,7 +73,7 @@ if (navigator.requestMIDIAccess) {
                 document.querySelector(".velocityInfo").textContent = velocity;
 
         if (command == 177) {
-            var footSwitchContent = document.querySelectorAll(".footSwitchContent");
+            let footSwitchContent = document.querySelectorAll(".footSwitchContent");
             if (velocity > 0) {
                 for (var i = 0; i < footSwitchContent.length; i++) {
                     console.log(footSwitchContent[i].children[3].selectedOptions[0].value);
