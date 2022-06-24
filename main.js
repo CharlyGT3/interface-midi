@@ -8,6 +8,7 @@ function createWindow () {
     height: 400,
     minWidth: 140,
     minHeight: 163,
+    icon: path.join(__dirname, 'CastorLogo.png'),
     titleBarStyle: 'hidden',
     titleBarOverlay: {
       color: '#2f3241',

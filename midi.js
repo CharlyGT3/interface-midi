@@ -76,7 +76,6 @@ if (navigator.requestMIDIAccess) {
             let footSwitchContent = document.querySelectorAll(".footSwitchContent");
             if (velocity > 0) {
                 for (var i = 0; i < footSwitchContent.length; i++) {
-                    console.log(footSwitchContent[i].children[3].selectedOptions[0].value);
                     if (footSwitchContent[i].children[3].selectedOptions[0].value == note) {
                         footSwitchContent[i].children[1].classList.add("active");
                     }
